@@ -22,9 +22,6 @@ def card_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def card_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
     try:
         card = Card.objects.get(pk=pk)
     except Card.DoesNotExist:
