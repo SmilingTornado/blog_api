@@ -7,7 +7,7 @@ from blogapi.serializers import CardSerializer
 
 
 @csrf_exempt
-@api_view(['GET', 'PUT'])
+@api_view(['GET', 'POST'])
 def card_list(request):
     if request.method == 'GET':
         cards = Card.objects.all()
