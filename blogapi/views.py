@@ -46,8 +46,11 @@ def card_detail(request, pk):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        if request.data['author'] == card.author:
-            card.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+        if 'author' in request.data:
+            if request.data['author'] == card.author:
+                card.delete()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            else:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
         else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
